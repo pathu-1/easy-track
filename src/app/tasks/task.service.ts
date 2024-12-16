@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DUMMY_TASKS } from '../dummy-tasks';
 import { NewTask } from './task/task.model';
-import uniqid from 'uniqid';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
@@ -23,7 +24,7 @@ export class TasksService {
 
     addTask(userId: string, taskData: NewTask) {
         this.tasks.unshift({
-            id: uniqid(),
+            id: new Date().getTime().toString(),
             userId: userId,
             ...taskData,
         });
